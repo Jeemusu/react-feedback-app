@@ -8,7 +8,7 @@ function AboutPage() {
             <div className="about">
                 <h1>This is the about page.</h1>
 
-                <p><Link to="/">Return to Home Page</Link></p>
+                <p><Link to="/">Home Page</Link></p>
             </div>
         </Card>
     )
