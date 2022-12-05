@@ -16,14 +16,24 @@
       "text": "What a wonderful app."
     },
     {
-      "text": "asda sd asd asd ",
+      "text": "asda sd asd asd  1/1",
       "rating": 7,
       "id": 4
     },
     {
-      "text": "asdasdasd asd asd",
-      "rating": 7,
+      "text": "NEW ONE 123123123123123123",
+      "rating": 10,
       "id": 5
+    },
+    {
+      "text": "asdasd asd asd asd 7 out of 10",
+      "rating": 7,
+      "id": 6
+    },
+    {
+      "text": "asdasd asa sd asasd",
+      "rating": 3,
+      "id": 7
     }
   ]
 }

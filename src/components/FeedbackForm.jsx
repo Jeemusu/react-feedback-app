@@ -1,8 +1,8 @@
-import Card from './shared/Card';
+import { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import Card from './shared/Card';
 import Button from './shared/Button';
 import RatingSelect from './shared/RatingSelect';
-import { useState, useContext, useEffect } from 'react';
 import FeedbackContext from '../context/FeedbackContext';
 
 function FeedbackForm({ id }) {
@@ -32,8 +32,8 @@ function FeedbackForm({ id }) {
 
     if (text.trim().length > 10) {
       const newFeedback = {
-        text: text,
-        rating: rating,
+        text,
+        rating,
       };
 
       if (feedbackEditFlag === true && id === feedbackEditableItem.id) {
@@ -66,7 +66,7 @@ function FeedbackForm({ id }) {
         <h2>How would you rate your experience?</h2>
         <RatingSelect
           id={id}
-          select={(rating) => setRating(rating)}
+          select={(selectedRating) => setRating(selectedRating)}
           selected={rating}
         />
         <div className="input-group">
@@ -86,8 +86,12 @@ function FeedbackForm({ id }) {
   );
 }
 
+FeedbackForm.defaultProps = {
+  id: null,
+};
+
 FeedbackForm.propTypes = {
-  id: PropTypes.string,
+  id: PropTypes.number,
 };
 
 export default FeedbackForm;

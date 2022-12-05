@@ -1,9 +1,14 @@
-import { createContext, useState, useEffect } from 'react';
+import {
+  createContext,
+  useState,
+  useEffect,
+  useMemo
+} from 'react';
 import PropTypes from 'prop-types';
 
 const FeedbackContext = createContext();
 
-export const FeedbackProvider = ({ children }) => {
+export function FeedbackProvider({ children }) {
   const [isLoading, setIsLoading] = useState(true);
   const [feedback, setFeedback] = useState([]);
   const [feedbackEditFlag, setFeedbackEditFlag] = useState(false);
@@ -39,6 +44,7 @@ export const FeedbackProvider = ({ children }) => {
 
   // Delete data from backend
   const deleteFeedbackItem = async (id) => {
+    // eslint-disable-next-line no-restricted-globals
     if (window.confirm('Sure?')) {
       await fetch(`/feedback/${id}`, {
         method: 'DELETE',
@@ -71,23 +77,30 @@ export const FeedbackProvider = ({ children }) => {
     setFeedbackEditableItem(item);
   };
 
+  const value = useMemo(() => ({
+    feedback,
+    feedbackEditFlag,
+    feedbackEditableItem,
+    isLoading,
+    deleteFeedbackItem,
+    addFeedbackItem,
+    editFeedbackItem,
+    updateFeedbackItem,
+  }), [
+    feedback,
+    feedbackEditFlag,
+    feedbackEditableItem,
+    isLoading,
+  ]);
+
   return (
     <FeedbackContext.Provider
-      value={{
-        feedback: feedback,
-        feedbackEditFlag: feedbackEditFlag,
-        feedbackEditableItem: feedbackEditableItem,
-        isLoading: isLoading,
-        deleteFeedbackItem: deleteFeedbackItem,
-        addFeedbackItem: addFeedbackItem,
-        editFeedbackItem: editFeedbackItem,
-        updateFeedbackItem: updateFeedbackItem,
-      }}
+      value={value}
     >
       {children}
     </FeedbackContext.Provider>
   );
-};
+}
 
 FeedbackProvider.propTypes = {
   children: PropTypes.node.isRequired,

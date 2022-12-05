@@ -1,8 +1,13 @@
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link
+} from 'react-router-dom';
+import { FaQuestion } from 'react-icons/fa';
 import Header from './components/Header';
 import AboutPage from './pages/AboutPage';
 import HomePage from './pages/HomePage';
-import { FaQuestion } from 'react-icons/fa';
 import { FeedbackProvider } from './context/FeedbackContext';
 
 function App() {
